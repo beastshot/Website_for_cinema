@@ -1,0 +1,102 @@
+﻿@model IEnumerable<MyCinema.Movy>
+
+@{
+    ViewBag.Title = "AdminMoviesList";
+}
+
+<h2>AdminMoviesList</h2>
+<div>
+    <strong> @Html.ActionLink("LogOut", "Index", "Home", null, new { style = "color: Red ; float: Right;font-size:20px;" })</strong>
+    
+</div>
+<p>
+    <strong>
+        @Html.ActionLink("Add Movie", "AddMovie", "Admin", null, new { style = "color: green ; font-size:20px;" })
+        @Html.ActionLink("Manage Hall Seats Number", "MANAGE", "Account", null, new { style = "color: blue ; position:relative;left:30%;font-size:20px;" })
+    </strong>
+
+    
+
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age_limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_dis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_hall)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_pic)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.movie_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Age_limit)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.movie_dis)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.movie_date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.movie_time)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.movie_hall)
+    </td>
+    <td>
+
+        @if (item.Discount != 0)
+        {
+            <p style="text-decoration-line: line-through; color:red">@((item.last.ToString())) &#8362;</p>
+        }
+        <p style="color:green">@((item.price).ToString()) &#8362;</p>
+    </td>
+    <td>
+        <img src="@Url.Content("~/Images/"+item.movie_pic)" height="100" width="100" />
+    </td>
+    <td>
+        @using (Html.BeginForm("Edit", "Account", new { id = item.Id }))
+        {
+            <input type="submit" value="Edit Movie details"  style="background-color:aquamarine; color:black"class="btn btn-default" onclick="return confirm('Are you shure you want to Edit @item.movie_name');" />
+        } |
+        @using (Html.BeginForm("Delete", "Account", new { id = item.Id }))
+        {
+            <input type="submit" value="Delete" style="background-color:crimson; color:white" class="btn btn-default" onclick="return confirm('Are you shure you want to delete @item.movie_name');" />
+        }
+    </td>
+</tr>
+}
+
+</table>

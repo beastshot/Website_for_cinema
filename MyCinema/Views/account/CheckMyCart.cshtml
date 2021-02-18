@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MyCinema.cart>
+<br />
+<br />
+
+@*@using (Html.BeginForm("CheckMyCart", "Account", FormMethod.Get))
+    {
+        <strong>Enter your Id </strong> @Html.TextBox("searching")
+        <input type="submit" value="search" />
+    }*@
+@using (Html.BeginForm("Index", "Home"))
+{
+    <input type="submit" value="HomePage" style="background-color:chartreuse ; color:black" class="btn btn-primary" );" />
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.seatno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieId)
+        </th>
+        <th></th>
+    </tr>
+    @{
+        string UserId = null;
+
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)&#8362;
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date.Day)/@Html.DisplayFor(modelItem => item.date.Month)/@Html.DisplayFor(modelItem => item.date.Year)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seatno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieId)
+            </td>
+            <td>
+                @using (Html.BeginForm("DeleteSeat", "Account", new { id = item.Id, mid = item.MovieId, sno = item.seatno, uid = item.UserId }))
+                {
+                    <input type="submit" value="Delete Seat" style="background-color:orangered ; color:black" class="btn btn-primary" );" />
+                }
+            </td>
+        </tr>
+        UserId = item.UserId;
+    }
+</table>
+<div>
+    <strong style="color:green">Total Price is : @Model.Sum(i => i.Amount) &#8362;</strong>
+</div>
+@using (Html.BeginForm("Payment", "Account", new { id = UserId }))
+{
+    <input type="submit" value="Payment" style="background-color:aqua ; color:black" class="btn btn-primary" );" />
+}
+
+

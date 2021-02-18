@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MyCinema.Models.BookSeat>
+@*<h2>Enter Movie Id to see the booked seats [you can know the movie Id the booking page]</h2>
+*@
+<h2>@TempData["choosen"]</h2>
+
+
+@using (Html.BeginForm("ChoosenSeats", "Account", FormMethod.Get))
+{
+<h3 style="color:mediumblue">Enter Identity</h3>
+    @Html.TextBox("searching")
+    <input type="submit" value="search"  />
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Your booked tickets</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    no seats booked.
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+    <tr>
+        <td style="color:blue"> Movie's name: @item.movieName </td>
+        
+    </tr>
+                <tr>
+                    <td>Day: @item.moviedate.Date.Day  / @item.moviedate.Month / @item.moviedate.Date.Year</td>
+                </tr>
+                <tr>
+                    <td>Time: @item.movietime</td>
+                </tr>
+                <tr>
+                    <td>Hall: @item.MyHall</td>
+                </tr>
+                <tr>
+                    <td style="color:green">Seat Number: @item.seatno </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

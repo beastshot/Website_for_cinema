@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities">
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="Database1Model.Movy">
+        <MappingFragment StoreEntitySet="Movies">
+          <ScalarProperty Name="last" ColumnName="last" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Age_limit" ColumnName="Age_limit" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="movie_hall" ColumnName="movie_hall" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="movie_name" ColumnName="movie_name" />
+          <ScalarProperty Name="movie_dis" ColumnName="movie_dis" />
+          <ScalarProperty Name="movie_date" ColumnName="movie_date" />
+          <ScalarProperty Name="movie_time" ColumnName="movie_time" />
+          <ScalarProperty Name="movie_pic" ColumnName="movie_pic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MaxPrices">
+      <EntityTypeMapping TypeName="Database1Model.MaxPrice">
+        <MappingFragment StoreEntitySet="MaxPrice">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="carts">
+      <EntityTypeMapping TypeName="Database1Model.cart">
+        <MappingFragment StoreEntitySet="cart">
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="seatno" ColumnName="seatno" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
